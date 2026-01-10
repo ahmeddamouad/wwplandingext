@@ -39,7 +39,7 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/wwprogress/"
                 className="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center hover:bg-background/10 transition-colors"
                 aria-label="Facebook"
               >
