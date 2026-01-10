@@ -1,8 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Clock, Users, Shield } from 'lucide-react';
 import heroImage from '@/assets/hero-recruitment.jpg';
+import { useContactForm } from '@/contexts/ContactFormContext';
 
 const Hero = () => {
+  const { openContactForm } = useContactForm();
+
   const benefits = [
     {
       icon: Clock,
@@ -55,11 +58,9 @@ const Hero = () => {
             </ul>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button variant="hero" size="lg" asChild>
-                <a href="#contact">
-                  Lancer un recrutement immédiatement
-                  <ArrowRight className="w-5 h-5" />
-                </a>
+              <Button variant="hero" size="lg" onClick={openContactForm}>
+                Lancer un recrutement immédiatement
+                <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
           </div>

@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
+import { useContactForm } from '@/contexts/ContactFormContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openContactForm } = useContactForm();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,11 @@ const Header = () => {
     { href: '#garantie', label: 'Garantie' },
     { href: '#faq', label: 'FAQ' },
   ];
+
+  const handleContactClick = () => {
+    setIsMobileMenuOpen(false);
+    openContactForm();
+  };
 
   return (
     <header
@@ -58,8 +65,8 @@ const Header = () => {
           >
             <Linkedin className="w-5 h-5" />
           </a>
-          <Button variant="hero" size="default" asChild>
-            <a href="#contact">Nous contacter</a>
+          <Button variant="hero" size="default" onClick={handleContactClick}>
+            Nous contacter
           </Button>
         </div>
 
@@ -87,10 +94,8 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" className="mt-4" asChild>
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                Nous contacter
-              </a>
+            <Button variant="hero" className="mt-4" onClick={handleContactClick}>
+              Nous contacter
             </Button>
           </nav>
         </div>

@@ -1,8 +1,11 @@
 import { TrendingDown, Clock, Shield, Wallet } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { useContactForm } from '@/contexts/ContactFormContext';
 
 const PricingLogic = () => {
+  const { openContactForm } = useContactForm();
+
   const benefits = [
     {
       icon: Wallet,
@@ -85,11 +88,9 @@ const PricingLogic = () => {
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="w-full" asChild>
-              <a href="#contact">
-                Recevoir des profils qualifiés
-                <ArrowRight className="w-5 h-5" />
-              </a>
+            <Button variant="hero" size="lg" className="w-full" onClick={openContactForm}>
+              Recevoir des profils qualifiés
+              <ArrowRight className="w-5 h-5" />
             </Button>
           </div>
         </div>

@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, MapPin, Linkedin } from 'lucide-react';
+import { useContactForm } from '@/contexts/ContactFormContext';
 
 const FinalCTA = () => {
+  const { openContactForm } = useContactForm();
+
   return (
     <section id="contact" className="section-padding bg-background">
       <div className="container-custom">
@@ -15,11 +18,9 @@ const FinalCTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button variant="hero" size="xl" asChild>
-              <a href="mailto:contact@wwpagency.com">
-                Recevoir des profils qualifiés immédiatement
-                <ArrowRight className="w-6 h-6" />
-              </a>
+            <Button variant="hero" size="xl" onClick={openContactForm}>
+              Recevoir des profils qualifiés immédiatement
+              <ArrowRight className="w-6 h-6" />
             </Button>
           </div>
 
