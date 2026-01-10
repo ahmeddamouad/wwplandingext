@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
+import logo2 from '@/assets/Logo2.png';
 import { useContactForm } from '@/contexts/ContactFormContext';
 
 const Header = () => {
@@ -38,8 +39,21 @@ const Header = () => {
       }`}
     >
       <div className="container-custom flex items-center justify-between">
-        <a href="#" className="flex items-center">
-          <img src={logo} alt="World Wide Progress" className="h-10 md:h-12" />
+        <a href="#" className="flex items-center relative">
+          <img 
+            src={logo} 
+            alt="World Wide Progress" 
+            className={`h-10 md:h-12 transition-opacity duration-300 ${
+              isScrolled ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+          <img 
+            src={logo2} 
+            alt="World Wide Progress" 
+            className={`h-10 md:h-12 absolute left-0 top-0 transition-opacity duration-300 ${
+              isScrolled ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
         </a>
 
         {/* Desktop Navigation */}

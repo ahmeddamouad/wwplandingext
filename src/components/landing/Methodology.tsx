@@ -55,7 +55,9 @@ const Methodology = () => {
                 <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-border z-10" />
               )}
 
-              <div className="icon-wrapper mb-4 group-hover:scale-110 transition-transform">
+              <div className={`icon-wrapper mb-4 group-hover:scale-110 transition-transform ${
+                index % 2 === 0 ? 'animate-float' : 'animate-float-delayed'
+              }`}>
                 <step.icon className="w-6 h-6" />
               </div>
 

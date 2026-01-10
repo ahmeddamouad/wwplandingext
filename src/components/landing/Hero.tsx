@@ -49,7 +49,9 @@ const Hero = () => {
                   className="flex items-start gap-3 animate-fade-in"
                   style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 >
-                  <span className="icon-wrapper flex-shrink-0">
+                  <span className={`icon-wrapper flex-shrink-0 ${
+                    index % 2 === 0 ? 'animate-float' : 'animate-float-delayed'
+                  }`}>
                     <benefit.icon className="w-5 h-5" />
                   </span>
                   <span className="body-md text-foreground">{benefit.text}</span>

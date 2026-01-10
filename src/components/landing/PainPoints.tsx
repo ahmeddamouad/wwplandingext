@@ -1,6 +1,11 @@
 import { TrendingUp, Users, Building2, Rocket, AlertTriangle } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { useCounter } from '@/hooks/use-counter';
 
 const PainPoints = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   const urgencyContexts = [
     { icon: TrendingUp, title: 'Pic d\'activité saisonnier' },
     { icon: Rocket, title: 'Croissance rapide non anticipée' },
@@ -8,8 +13,30 @@ const PainPoints = () => {
     { icon: Building2, title: 'Création d\'entreprise ou nouvelle filiale' },
   ];
 
+  const painPointStats = [
+    { value: 80, label: 'CV à trier' },
+    { value: 20, label: 'Entretiens à mener' },
+    { value: 0, label: 'Profils adaptés' },
+    { value: 2, suffix: '-4', label: 'Mois perdus' },
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-background" ref={sectionRef}>
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="heading-lg mb-6">Le Vrai Problème du Recrutement Urgent</h2>
@@ -20,22 +47,20 @@ const PainPoints = () => {
 
         {/* Pain Points Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <div className="bg-card rounded-xl p-6 border border-border shadow-card card-hover">
-            <div className="text-4xl font-bold text-destructive mb-2">80</div>
-            <p className="text-muted-foreground">CV à trier</p>
-          </div>
-          <div className="bg-card rounded-xl p-6 border border-border shadow-card card-hover">
-            <div className="text-4xl font-bold text-destructive mb-2">20</div>
-            <p className="text-muted-foreground">Entretiens à mener</p>
-          </div>
-          <div className="bg-card rounded-xl p-6 border border-border shadow-card card-hover">
-            <div className="text-4xl font-bold text-destructive mb-2">0</div>
-            <p className="text-muted-foreground">Profils adaptés</p>
-          </div>
-          <div className="bg-card rounded-xl p-6 border border-border shadow-card card-hover">
-            <div className="text-4xl font-bold text-destructive mb-2">2-4</div>
-            <p className="text-muted-foreground">Mois perdus</p>
-          </div>
+          {painPointStats.map((stat, index) => {
+            const count = useCounter(stat.value, 2000, isVisible);
+            return (
+              <div 
+                key={index}
+                className="bg-card rounded-xl p-6 border border-border shadow-card card-hover"
+              >
+                <div className="text-4xl font-bold text-destructive mb-2">
+                  {count}{stat.suffix || ''}
+                </div>
+                <p className="text-muted-foreground">{stat.label}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* Urgency Contexts */}
@@ -49,7 +74,7 @@ const PainPoints = () => {
                 key={index}
                 className="flex flex-col items-center text-center p-6 bg-card rounded-xl border border-border shadow-card card-hover"
               >
-                <div className="icon-wrapper mb-4">
+                <div className={`icon-wrapper mb-4 ${index % 2 === 0 ? 'animate-float' : 'animate-float-delayed'}`}>
                   <context.icon className="w-6 h-6" />
                 </div>
                 <p className="font-semibold text-foreground">{context.title}</p>

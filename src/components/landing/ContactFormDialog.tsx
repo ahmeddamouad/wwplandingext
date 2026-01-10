@@ -20,6 +20,7 @@ interface ContactFormDialogProps {
 const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -39,39 +40,79 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission - in production, you'd send this to your backend
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const payload = {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        message: formData.message,
+        timestamp: new Date().toISOString()
+      };
 
-    toast({
-      title: 'Message envoyé !',
-      description: 'Notre équipe vous répondra rapidement.',
-    });
+      const webhookUrl = import.meta.env.VITE_WEBHOOK_URL;
 
-    setFormData({
-      fullName: '',
-      email: '',
-      company: '',
-      phone: '',
-      message: '',
-    });
-    setIsSubmitting(false);
+      if (!webhookUrl) {
+        throw new Error('Webhook URL not configured');
+      }
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Submission failed');
+      }
+
+      setIsSubmitted(true);
+      setFormData({
+        fullName: '',
+        email: '',
+        company: '',
+        phone: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: 'Erreur',
+        description: 'Une erreur s\'est produite. Veuillez réessayer.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleClose = () => {
+    setIsSubmitted(false);
     onOpenChange(false);
   };
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] bg-background">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-foreground">
-            Envoyez-nous un Message
-          </DialogTitle>
-          <DialogDescription className="text-muted-foreground">
-            Remplissez le formulaire ci-dessous et notre équipe vous répondra
-            rapidement.
-          </DialogDescription>
-        </DialogHeader>
+  const handleNewMessage = () => {
+    setIsSubmitted(false);
+  };
 
-        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+  return (
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className="sm:max-w-[600px] bg-background">
+        {!isSubmitted ? (
+          <>
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold text-foreground">
+                Envoyez-nous un Message
+              </DialogTitle>
+              <DialogDescription className="text-muted-foreground">
+                Remplissez le formulaire ci-dessous et notre équipe vous répondra
+                rapidement.
+              </DialogDescription>
+            </DialogHeader>
+
+            <form onSubmit={handleSubmit} className="space-y-6 mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="fullName" className="text-foreground font-medium">
@@ -159,6 +200,44 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
             {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
           </Button>
         </form>
+          </>
+        ) : (
+          <div className="py-12 text-center space-y-6">
+            <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+              <svg
+                className="w-10 h-10 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-foreground">
+                Message envoyé avec succès !
+              </h3>
+              <p className="text-muted-foreground">
+                Merci de nous avoir contactés. Notre équipe vous répondra dans les plus brefs délais.
+              </p>
+            </div>
+            <div className="pt-4">
+              <Button
+                variant="hero"
+                size="lg"
+                onClick={handleClose}
+                className="mx-auto"
+              >
+                Fermer
+              </Button>
+            </div>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
