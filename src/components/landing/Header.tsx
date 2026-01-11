@@ -86,36 +86,15 @@ const Header = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden p-2 text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Menu"
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile CTA Button */}
+        <div className="lg:hidden">
+          <Button variant="cta" size="sm" onClick={handleContactClick}>
+            Ma Vidéo
+          </Button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg animate-fade-in">
-          <nav className="container-custom py-6 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Button variant="cta" className="mt-4" onClick={handleContactClick}>
-              Obtenir Ma Vidéo Gratuite
-            </Button>
-          </nav>
-        </div>
-      )}
+
     </header>
     <UrgencyBanner />
     </>

@@ -22,7 +22,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-to-b from-secondary to-background pt-32">
+    <section className="relative min-h-screen flex items-center bg-gradient-to-b from-secondary to-background pt-40 md:pt-32">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}

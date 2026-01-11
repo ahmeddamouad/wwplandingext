@@ -17,7 +17,7 @@ const PainPoints = () => {
     { value: 80, label: 'CV à trier' },
     { value: 20, label: 'Entretiens à mener' },
     { value: 0, label: 'Profils adaptés' },
-    { value: 2, suffix: '-4', label: 'Mois perdus' },
+    { value: 2, value2: 4, label: 'Mois perdus' },
   ];
 
   useEffect(() => {
@@ -49,13 +49,14 @@ const PainPoints = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {painPointStats.map((stat, index) => {
             const count = useCounter(stat.value, 2000, isVisible);
+            const count2 = stat.value2 ? useCounter(stat.value2, 2000, isVisible) : null;
             return (
               <div 
                 key={index}
                 className="bg-card rounded-xl p-6 border border-border shadow-card card-hover"
               >
                 <div className="text-4xl font-bold text-destructive mb-2">
-                  {count}{stat.suffix || ''}
+                  {count}{count2 !== null ? `-${count2}` : ''}
                 </div>
                 <p className="text-muted-foreground">{stat.label}</p>
               </div>

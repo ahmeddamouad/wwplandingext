@@ -4,7 +4,10 @@ export const useCounter = (end: number, duration: number = 2000, isVisible: bool
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible) {
+      setCount(0);
+      return;
+    }
 
     let startTime: number;
     let animationFrame: number;
@@ -13,9 +16,11 @@ export const useCounter = (end: number, duration: number = 2000, isVisible: bool
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
 
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
+      // Smoother easing - easeOutCubic instead of easeOutQuart
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentCount = Math.round(easeOutCubic * end);
+      
+      setCount(currentCount);
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
