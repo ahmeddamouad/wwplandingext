@@ -101,7 +101,7 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[700px] bg-background">
+      <DialogContent className="sm:max-w-[700px] bg-background max-h-[90vh] overflow-y-auto">
         {!isSubmitted ? (
           <>
             <DialogHeader>
@@ -205,12 +205,12 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
         </form>
           </>
         ) : (
-          <div className="py-6 px-4 sm:py-8 sm:px-0 space-y-6">
-            <div className="space-y-2 text-center">
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+          <div className="py-4 sm:py-8 space-y-4 sm:space-y-6">
+            <div className="space-y-1 sm:space-y-2 text-center px-2">
+              <h3 className="text-lg sm:text-2xl font-bold text-foreground leading-tight">
                 Voici Votre Vidéo Gratuite !
               </h3>
-              <p className="text-sm sm:text-base text-muted-foreground">
+              <p className="text-xs sm:text-base text-muted-foreground">
                 Découvrez comment réussir votre recrutement au Maroc
               </p>
             </div>
@@ -226,13 +226,13 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
               </video>
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-center">
-              <p className="text-sm font-medium text-foreground mb-3">🎁 Bonus : Téléchargez votre checklist gratuite</p>
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 sm:p-4 text-center">
+              <p className="text-xs sm:text-sm font-medium text-foreground mb-2 sm:mb-3">🎁 Bonus : Téléchargez votre checklist gratuite</p>
               <Button
                 variant="outline"
-                size="lg"
+                size="default"
                 asChild
-                className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                className="w-full sm:text-base text-sm border-primary text-primary hover:bg-primary hover:text-white"
               >
                 <a href={pdfFile} download="Checklist-Recrutement-WWP.pdf" className="flex items-center justify-center gap-2">
                   📥 Télécharger la Checklist PDF
@@ -240,10 +240,10 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
               </Button>
             </div>
 
-            <div className="pt-4 flex justify-center">
+            <div className="pt-2 sm:pt-4 flex justify-center">
               <Button
                 variant="hero"
-                size="lg"
+                size="default"
                 onClick={handleClose}
               >
                 Fermer
