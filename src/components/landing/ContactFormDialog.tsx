@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import videoFile from '@/assets/Recrutement_Réussi_au_Maroc.mp4';
+import pdfFile from '@/assets/Checklist Recrutement WWP.pdf';
 
 interface ContactFormDialogProps {
   open: boolean;
@@ -99,7 +101,7 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[600px] bg-background">
+      <DialogContent className="sm:max-w-[700px] bg-background">
         {!isSubmitted ? (
           <>
             <DialogHeader>
@@ -161,7 +163,7 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone" className="text-foreground font-medium">
-                Téléphone
+                Téléphone<span className="text-destructive">*</span>
               </Label>
               <Input
                 id="phone"
@@ -169,6 +171,7 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
+                required
                 placeholder="+212 600 000 000"
                 className="bg-background border-border"
               />
@@ -202,30 +205,41 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
         </form>
           </>
         ) : (
-          <div className="py-12 text-center space-y-6">
-            <div className="w-20 h-20 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-              <svg
-                className="w-10 h-10 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
+          <div className="py-8 text-center space-y-6">
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-foreground">
-                Message envoyé avec succès !
+                Voici Votre Vidéo Gratuite !
               </h3>
               <p className="text-muted-foreground">
-                Merci de nous avoir contactés. Notre équipe vous répondra dans les plus brefs délais.
+                Découvrez comment réussir votre recrutement au Maroc
               </p>
             </div>
+            
+            <div className="w-full aspect-video rounded-lg overflow-hidden bg-secondary/5">
+              <video
+                controls
+                autoPlay
+                className="w-full h-full"
+                src={videoFile}
+              >
+                Votre navigateur ne supporte pas la lecture de vidéo.
+              </video>
+            </div>
+
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+              <p className="text-sm font-medium text-foreground mb-3">🎁 Bonus : Téléchargez votre checklist gratuite</p>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+              >
+                <a href={pdfFile} download="Checklist-Recrutement-WWP.pdf">
+                  📥 Télécharger la Checklist PDF
+                </a>
+              </Button>
+            </div>
+
             <div className="pt-4">
               <Button
                 variant="hero"
