@@ -1,12 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, MapPin, Linkedin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Linkedin, Play, CheckCircle } from 'lucide-react';
 import { useContactForm } from '@/contexts/ContactFormContext';
 
 const FinalCTA = () => {
   const { openContactForm } = useContactForm();
 
   return (
-    <section id="contact" className="section-padding bg-background">
+    <section id="contact" className="section-padding bg-gradient-to-b from-secondary to-background">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="heading-lg mb-6">
@@ -19,14 +19,25 @@ const FinalCTA = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button variant="hero" size="xl" onClick={openContactForm}>
-              Recevoir des profils qualifiés immédiatement
-              <ArrowRight className="w-6 h-6" />
+              Obtenir Ma Vidéo Gratuite
+              <Play className="w-6 h-6" />
             </Button>
           </div>
 
-          <p className="text-sm text-muted-foreground mb-12">
-            Sans engagement – Réponse rapide – Premier échange gratuit
-          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-12">
+            <span className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-primary" />
+              Sans engagement
+            </span>
+            <span className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-primary" />
+              Réponse sous 2h ouvrées
+            </span>
+            <span className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-primary" />
+              Vidéo exclusive offerte (valeur 5000 DH)
+            </span>
+          </div>
 
           {/* Contact Info */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8 border-t border-border">

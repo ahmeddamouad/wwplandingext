@@ -4,6 +4,7 @@ import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
 import logo2 from '@/assets/Logo2.png';
 import { useContactForm } from '@/contexts/ContactFormContext';
+import UrgencyBanner from './UrgencyBanner';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,13 +32,14 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-md py-3'
-          : 'bg-transparent py-4'
-      }`}
-    >
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-background/95 backdrop-blur-md shadow-md py-3'
+            : 'bg-background py-3'
+        }`}
+      >
       <div className="container-custom flex items-center justify-between">
         <a href="#" className="flex items-center relative">
           <img 
@@ -79,8 +81,8 @@ const Header = () => {
           >
             <Linkedin className="w-5 h-5" />
           </a>
-          <Button variant="hero" size="default" onClick={handleContactClick}>
-            Nous contacter
+          <Button variant="cta" size="default" onClick={handleContactClick}>
+            Obtenir Ma Vidéo Gratuite
           </Button>
         </div>
 
@@ -108,13 +110,15 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" className="mt-4" onClick={handleContactClick}>
-              Nous contacter
+            <Button variant="cta" className="mt-4" onClick={handleContactClick}>
+              Obtenir Ma Vidéo Gratuite
             </Button>
           </nav>
         </div>
       )}
     </header>
+    <UrgencyBanner />
+    </>
   );
 };
 

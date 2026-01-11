@@ -22,7 +22,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-to-b from-secondary to-background pt-20">
+    <section className="relative min-h-screen flex items-center bg-gradient-to-b from-secondary to-background pt-32">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
@@ -61,9 +61,24 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button variant="hero" size="lg" onClick={openContactForm}>
-                Lancer un recrutement immédiatement
+                Obtenir Ma Vidéo Gratuite
                 <ArrowRight className="w-5 h-5" />
               </Button>
+            </div>
+
+            {/* Guarantee Box */}
+            <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 animate-fade-in delay-300">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-foreground mb-1">Garantie 100% Satisfait</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Remplacement gratuit sous 3 mois si le candidat ne convient pas
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
