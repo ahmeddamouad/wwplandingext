@@ -4,12 +4,15 @@ const UrgencyBanner = () => {
   return (
     <div className="bg-primary text-primary-foreground py-2 md:py-3 text-center fixed top-[60px] md:top-[72px] left-0 right-0 z-40">
       <div className="container-custom px-2">
-        <p className="flex flex-wrap items-center justify-center gap-1 md:gap-2 text-xs md:text-base font-semibold leading-tight">
-          <Flame className="w-4 h-4 md:w-5 md:h-5 animate-bounce flex-shrink-0" />
-          <span>
-            Offre Limitée : Les 10 premières entreprises reçoivent une vidéo exclusive sur les secrets du recrutement au Maroc
+        <p className="flex items-center justify-center gap-1 md:gap-2 text-[10px] sm:text-xs md:text-base font-semibold">
+          <Flame className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 animate-bounce flex-shrink-0" />
+          <span className="line-clamp-2 md:line-clamp-1">
+            <span className="hidden sm:inline">Offre Limitée : </span>
+            <span className="sm:hidden">🔥 </span>
+            Les 10 premières entreprises reçoivent une vidéo exclusive
+            <span className="hidden md:inline"> sur les secrets du recrutement au Maroc</span>
           </span>
-          <Flame className="w-4 h-4 md:w-5 md:h-5 animate-bounce flex-shrink-0" />
+          <Flame className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 animate-bounce flex-shrink-0" />
         </p>
       </div>
     </div>
