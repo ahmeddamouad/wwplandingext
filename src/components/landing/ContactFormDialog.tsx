@@ -205,12 +205,12 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
         </form>
           </>
         ) : (
-          <div className="py-8 text-center space-y-6">
-            <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-foreground">
+          <div className="py-6 px-4 sm:py-8 sm:px-0 space-y-6">
+            <div className="space-y-2 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground">
                 Voici Votre Vidéo Gratuite !
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Découvrez comment réussir votre recrutement au Maroc
               </p>
             </div>
@@ -226,7 +226,7 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
               </video>
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-center">
               <p className="text-sm font-medium text-foreground mb-3">🎁 Bonus : Téléchargez votre checklist gratuite</p>
               <Button
                 variant="outline"
@@ -234,18 +234,17 @@ const ContactFormDialog = ({ open, onOpenChange }: ContactFormDialogProps) => {
                 asChild
                 className="w-full border-primary text-primary hover:bg-primary hover:text-white"
               >
-                <a href={pdfFile} download="Checklist-Recrutement-WWP.pdf">
+                <a href={pdfFile} download="Checklist-Recrutement-WWP.pdf" className="flex items-center justify-center gap-2">
                   📥 Télécharger la Checklist PDF
                 </a>
               </Button>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex justify-center">
               <Button
                 variant="hero"
                 size="lg"
                 onClick={handleClose}
-                className="mx-auto"
               >
                 Fermer
               </Button>
