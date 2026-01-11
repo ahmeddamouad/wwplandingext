@@ -1,4 +1,4 @@
-import { Quote } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 const Testimonials = () => {
   const testimonials = [
@@ -36,15 +36,30 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-8 border border-border shadow-card card-hover relative"
+              className="group relative bg-gradient-to-br from-card via-card to-primary/5 rounded-2xl p-8 border border-primary/20 shadow-lg hover:shadow-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
             >
-              <Quote className="w-10 h-10 text-primary/20 absolute top-6 right-6" />
-              <blockquote className="text-foreground mb-6 relative z-10">
+              {/* Futuristic corner accent */}
+              <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-2xl" />
+              
+              {/* Star rating */}
+              <div className="flex gap-1 mb-4 relative z-10">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                ))}
+              </div>
+
+              <blockquote className="text-foreground mb-6 relative z-10 leading-relaxed">
                 "{testimonial.quote}"
               </blockquote>
-              <div className="border-t border-border pt-4">
-                <p className="font-bold text-foreground">{testimonial.author}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+              
+              <div className="flex items-center gap-3 pt-4 border-t border-primary/10 relative z-10">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold">
+                  {testimonial.author[0]}
+                </div>
+                <div>
+                  <p className="font-bold text-foreground">{testimonial.author}</p>
+                  <p className="text-xs text-muted-foreground">{testimonial.company}</p>
+                </div>
               </div>
             </div>
           ))}
