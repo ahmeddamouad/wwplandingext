@@ -3,13 +3,16 @@ import { Button } from '@/components/ui/button';
 import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
 import logo2 from '@/assets/Logo2.png';
-import { useContactForm } from '@/contexts/ContactFormContext';
 import UrgencyBanner from './UrgencyBanner';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { openContactForm } = useContactForm();
+
+  const scrollToForm = () => {
+    const formSection = document.getElementById('contact-form');
+    formSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +31,7 @@ const Header = () => {
 
   const handleContactClick = () => {
     setIsMobileMenuOpen(false);
-    openContactForm();
+    scrollToForm();
   };
 
   return (
@@ -82,14 +85,14 @@ const Header = () => {
             <Linkedin className="w-5 h-5" />
           </a>
           <Button variant="cta" size="default" onClick={handleContactClick}>
-            Obtenir Ma Vidéo Gratuite
+            Recevoir des profils qualifiés
           </Button>
         </div>
 
         {/* Mobile CTA Button */}
         <div className="lg:hidden">
           <Button variant="cta" size="sm" onClick={handleContactClick}>
-            Ma Vidéo
+            Recevoir des profils qualifiés
           </Button>
         </div>
       </div>

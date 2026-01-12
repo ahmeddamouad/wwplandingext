@@ -1,9 +1,11 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Mail, MapPin, Linkedin, Play, CheckCircle } from 'lucide-react';
-import { useContactForm } from '@/contexts/ContactFormContext';
+import { ArrowRight, Mail, MapPin, Linkedin, CheckCircle } from 'lucide-react';
 
 const FinalCTA = () => {
-  const { openContactForm } = useContactForm();
+  const scrollToForm = () => {
+    const formSection = document.getElementById('contact-form');
+    formSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <section id="contact" className="section-padding bg-gradient-to-b from-secondary to-background">
@@ -18,9 +20,9 @@ const FinalCTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button variant="hero" size="xl" onClick={openContactForm}>
-              Obtenir Ma Vidéo Gratuite
-              <Play className="w-6 h-6" />
+            <Button variant="hero" size="xl" onClick={scrollToForm}>
+              Recevoir des profils disponibles immédiatement
+              <ArrowRight className="w-6 h-6" />
             </Button>
           </div>
 
@@ -31,11 +33,7 @@ const FinalCTA = () => {
             </span>
             <span className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-primary" />
-              Réponse sous 2h ouvrées
-            </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              Vidéo exclusive offerte (valeur 5000 DH)
+              Réponse rapide
             </span>
           </div>
 

@@ -1,10 +1,12 @@
 import { TrendingDown, Clock, Shield, Wallet } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { useContactForm } from '@/contexts/ContactFormContext';
 
 const PricingLogic = () => {
-  const { openContactForm } = useContactForm();
+  const scrollToForm = () => {
+    const formSection = document.getElementById('contact-form');
+    formSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const benefits = [
     {
@@ -88,7 +90,7 @@ const PricingLogic = () => {
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="w-full" onClick={openContactForm}>
+            <Button variant="hero" size="lg" className="w-full" onClick={scrollToForm}>
               Recevoir des profils qualifiés
               <ArrowRight className="w-5 h-5" />
             </Button>

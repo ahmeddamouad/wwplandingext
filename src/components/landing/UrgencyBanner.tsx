@@ -7,7 +7,7 @@ const UrgencyBanner = () => {
         <p className="flex items-center justify-center gap-2 text-xs md:text-base font-semibold">
           <Flame className="w-4 h-4 md:w-5 md:h-5 animate-bounce" />
           <span className="line-clamp-2 md:line-clamp-1">
-            Les 10 premières entreprises reçoivent une vidéo exclusive sur les secrets du recrutement au Maroc
+            Les 10 premières entreprises reçoivent des profils qualifiés disponibles immédiatement
           </span>
           <Flame className="w-4 h-4 md:w-5 md:h-5 animate-bounce" />
         </p>

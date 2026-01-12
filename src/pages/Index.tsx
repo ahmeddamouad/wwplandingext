@@ -11,12 +11,8 @@ import Testimonials from '@/components/landing/Testimonials';
 import FAQ from '@/components/landing/FAQ';
 import FinalCTA from '@/components/landing/FinalCTA';
 import Footer from '@/components/landing/Footer';
-import ContactFormDialog from '@/components/landing/ContactFormDialog';
-import { ContactFormProvider, useContactForm } from '@/contexts/ContactFormContext';
 
-const IndexContent = () => {
-  const { isOpen, setIsOpen } = useContactForm();
-
+const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
@@ -34,16 +30,7 @@ const IndexContent = () => {
         <FinalCTA />
       </main>
       <Footer />
-      <ContactFormDialog open={isOpen} onOpenChange={setIsOpen} />
     </div>
-  );
-};
-
-const Index = () => {
-  return (
-    <ContactFormProvider>
-      <IndexContent />
-    </ContactFormProvider>
   );
 };
 
