@@ -277,7 +277,7 @@ const Hero = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-secondary mb-4 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+                  <h3 className="text-2xl font-bold text-foreground mb-4">
                     Message envoyé avec succès !
                   </h3>
                   <p className="text-muted-foreground">
