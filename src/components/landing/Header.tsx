@@ -46,8 +46,6 @@ const Header = () => {
   const navLinks = [
     { href: '#methodologie', label: 'Méthodologie' },
     { href: '#garantie', label: 'Garantie' },
-    { href: '#expertise', label: 'Expertise' },
-    { href: '#faq', label: 'FAQ' },
   ];
 
   const handleContactClick = () => {
@@ -64,58 +62,39 @@ const Header = () => {
             : 'bg-background py-3'
         }`}
       >
-      <div className="container-custom flex items-center justify-between">
-        <a href="#" className="flex items-center relative">
+      <div className="container-custom relative flex items-center justify-center">
+        {/* Logo 1 - always centered */}
+        <a href="#" className={`flex items-center relative transition-opacity duration-300 ${
+          showDesktopCTA || showMobileCTA ? 'opacity-0' : 'opacity-100'
+        }`}>
           <img 
             src={logo} 
             alt="World Wide Progress" 
-            className={`h-10 md:h-12 transition-opacity duration-300 ${
-              isScrolled ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          <img 
-            src={logo2} 
-            alt="World Wide Progress" 
-            className={`h-10 md:h-12 absolute left-0 top-0 transition-opacity duration-300 ${
-              isScrolled ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="h-10 md:h-12"
           />
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-foreground/80 hover:text-primary font-medium transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        {/* Logo 2 - appears on the left when CTA shows */}
+        <a href="#" className={`absolute left-0 flex items-center transition-opacity duration-300 ${
+          showDesktopCTA || showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+          <img 
+            src={logo} 
+            alt="World Wide Progress" 
+            className="h-10 md:h-12"
+          />
+        </a>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <a
-            href="https://www.linkedin.com/company/world-wide-progress"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <div className={`transition-opacity duration-300 ${
-            showDesktopCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}>
-            <Button variant="cta" size="default" onClick={handleContactClick}>
-              Recevoir des profils qualifiés
-            </Button>
-          </div>
+        <div className={`hidden lg:flex items-center absolute right-0 transition-opacity duration-300 ${
+          showDesktopCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+          <Button variant="cta" size="default" onClick={handleContactClick}>
+            Recevoir des profils qualifiés
+          </Button>
         </div>
 
         {/* Mobile CTA Button - Only show after scrolling past form */}
-        <div className={`lg:hidden transition-opacity duration-300 ${
+        <div className={`lg:hidden absolute right-0 transition-opacity duration-300 ${
           showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           <Button variant="cta" size="sm" onClick={handleContactClick}>
