@@ -3,9 +3,9 @@ import logo from '@/assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-background text-foreground py-16 border-t border-border">
-      <div className="container-custom">
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+    <footer className="bg-background text-foreground py-16 border-t border-border w-full">
+      <div className="container-custom w-full">
+        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto w-full">
           {/* Logo & Description */}
           <div className="space-y-6">
             <img src={logo} alt="World Wide Progress" className="h-12" />

@@ -8,6 +8,8 @@ import UrgencyBanner from './UrgencyBanner';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showMobileCTA, setShowMobileCTA] = useState(false);
+  const [showDesktopCTA, setShowDesktopCTA] = useState(false);
 
   const scrollToForm = () => {
     const formSection = document.getElementById('contact-form');
@@ -17,9 +19,29 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      // Get hero section height
+      const heroSection = document.getElementById('contact-form');
+      const heroHeight = heroSection ? heroSection.offsetHeight : 800;
+      
+      // Show CTA button on mobile when scrolling past form (200px)
+      if (window.innerWidth < 1024) {
+        setShowMobileCTA(window.scrollY > 200);
+      } else {
+        setShowMobileCTA(false);
+      }
+      
+      // Show CTA button on desktop when scrolling past hero section
+      setShowDesktopCTA(window.scrollY > heroHeight - 100);
     };
+    
+    handleScroll(); // Call once on mount
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const navLinks = [
@@ -84,13 +106,19 @@ const Header = () => {
           >
             <Linkedin className="w-5 h-5" />
           </a>
-          <Button variant="cta" size="default" onClick={handleContactClick}>
-            Recevoir des profils qualifiés
-          </Button>
+          <div className={`transition-opacity duration-300 ${
+            showDesktopCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}>
+            <Button variant="cta" size="default" onClick={handleContactClick}>
+              Recevoir des profils qualifiés
+            </Button>
+          </div>
         </div>
 
-        {/* Mobile CTA Button */}
-        <div className="lg:hidden">
+        {/* Mobile CTA Button - Only show after scrolling past form */}
+        <div className={`lg:hidden transition-opacity duration-300 ${
+          showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
           <Button variant="cta" size="sm" onClick={handleContactClick}>
             Recevoir des profils qualifiés
           </Button>

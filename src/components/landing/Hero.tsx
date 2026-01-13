@@ -98,26 +98,26 @@ const Hero = () => {
   ];
 
   return (
-    <section id="contact-form" className="relative min-h-screen flex items-center bg-gradient-to-br from-secondary via-background to-primary/5 pt-40 md:pt-32">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+    <section id="contact-form" className="relative min-h-screen flex items-center bg-gradient-to-br from-secondary via-background to-primary/5 pt-40 md:pt-32 w-full overflow-hidden">
+      <div className="container-custom w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start w-full">
           {/* Left Content */}
-          <div className="space-y-8 animate-slide-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-medium text-sm">
+          <div className="space-y-6 sm:space-y-8 animate-slide-up w-full max-w-full order-2 lg:order-1">
+            <div className="inline-flex items-center gap-2 px-3 py-2 bg-primary/10 rounded-full text-primary font-medium text-xs sm:text-sm">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               Cabinet de Recrutement au Maroc
             </div>
 
-            <h1 className="heading-xl">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-foreground break-words">
               Recruter vite sans se tromper{' '}
               <span className="text-primary">coûte moins cher</span> que recruter deux fois
             </h1>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3 sm:space-y-4 w-full max-w-full">
               {benefits.map((benefit, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-3 animate-fade-in"
+                  className="flex items-start gap-2 sm:gap-3 animate-fade-in w-full"
                   style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 >
                   <span className={`icon-wrapper flex-shrink-0 ${
@@ -131,14 +131,14 @@ const Hero = () => {
             </ul>
 
             {/* Guarantee Box */}
-            <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 animate-fade-in delay-300">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-primary" />
+            <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 sm:p-6 animate-fade-in delay-300 w-full max-w-full">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">Garantie 100% Satisfait</h3>
-                  <p className="text-sm text-muted-foreground">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-foreground mb-1 text-sm sm:text-base">Garantie 100% Satisfait</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground break-words">
                     Remplacement gratuit sous 3 mois si le candidat ne convient pas
                   </p>
                 </div>
@@ -147,9 +147,9 @@ const Hero = () => {
           </div>
 
           {/* Right Form */}
-          <div className="relative animate-fade-in delay-200">
+          <div className="relative animate-fade-in delay-200 order-1 lg:order-2">
             {!isSubmitted ? (
-              <div className="relative bg-gradient-to-br from-white via-white to-primary/5 rounded-3xl shadow-2xl p-8 border border-primary/20 backdrop-blur-sm sticky top-32 overflow-hidden">
+              <div className="relative bg-gradient-to-br from-white via-white to-primary/5 rounded-3xl shadow-2xl p-8 border border-primary/20 backdrop-blur-sm lg:sticky lg:top-32 overflow-hidden">
                 {/* Futuristic decorative elements */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />

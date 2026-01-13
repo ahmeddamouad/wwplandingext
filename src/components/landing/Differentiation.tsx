@@ -14,7 +14,7 @@ const Differentiation = () => {
   ];
 
   return (
-    <section className="section-padding bg-secondary">
+    <section className="section-padding bg-secondary w-full">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="heading-lg mb-6">Notre Approche de Recrutement</h2>

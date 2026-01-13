@@ -8,7 +8,7 @@ const FinalCTA = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-secondary to-background">
+    <section id="contact" className="section-padding bg-gradient-to-b from-secondary to-background w-full">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="heading-lg mb-6">
@@ -19,10 +19,17 @@ const FinalCTA = () => {
             marché marocain
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button variant="hero" size="xl" onClick={scrollToForm}>
-              Recevoir des profils disponibles immédiatement
-              <ArrowRight className="w-6 h-6" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 px-4">
+            <Button 
+              variant="hero" 
+              size="xl" 
+              onClick={scrollToForm}
+              className="text-sm sm:text-base w-full sm:w-auto"
+            >
+              <span className="whitespace-normal sm:whitespace-nowrap leading-tight">
+                Recevoir des profils disponibles immédiatement
+              </span>
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 ml-2" />
             </Button>
           </div>
 

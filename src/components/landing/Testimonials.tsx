@@ -23,7 +23,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-background w-full">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="heading-lg mb-6">Ils Nous Font Confiance</h2>
