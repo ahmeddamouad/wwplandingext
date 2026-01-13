@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Clock, Users, Shield } from 'lucide-react';
 import heroImage from '@/assets/hero-recruitment.jpg';
+import { trackLead } from '@/lib/metaPixel';
 
 const Hero = () => {
   const { toast } = useToast();
@@ -57,6 +58,9 @@ const Hero = () => {
       if (!response.ok) {
         throw new Error('Submission failed');
       }
+
+      // Track lead conversion with Meta Pixel
+      trackLead();
 
       setIsSubmitted(true);
       setFormData({

@@ -47,6 +47,24 @@ npm run preview  # Preview production build
 npm run lint     # Run ESLint
 ```
 
+## Environment Variables
+
+This project uses environment variables for configuration. Create a `.env` file in the root directory with the following variables:
+
+```env
+# n8n Webhook Configuration
+VITE_WEBHOOK_URL=http://localhost:5678/webhook/wwpformdetails
+
+# Meta (Facebook) Pixel Configuration
+VITE_META_PIXEL_ID=123456789012345
+```
+
+**Variable Descriptions:**
+- `VITE_WEBHOOK_URL` - n8n webhook endpoint for form submissions
+- `VITE_META_PIXEL_ID` - Meta (Facebook) Pixel ID for tracking PageView and Lead events
+
+> **Note:** When deploying to Vercel or other hosting platforms, make sure to set these environment variables in the platform's settings and redeploy to apply them.
+
 ## Project Structure
 
 ```
