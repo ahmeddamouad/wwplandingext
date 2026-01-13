@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
 import logo2 from '@/assets/Logo2.png';
-import UrgencyBanner from './UrgencyBanner';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -124,10 +123,7 @@ const Header = () => {
           </Button>
         </div>
       </div>
-
-
     </header>
-    <UrgencyBanner />
     </>
   );
 };

@@ -98,7 +98,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="contact-form" className="relative min-h-screen flex items-center bg-gradient-to-br from-secondary via-background to-primary/5 pt-40 md:pt-32 w-full overflow-hidden">
+    <section id="contact-form" className="relative min-h-screen flex items-center bg-gradient-to-br from-secondary via-background to-primary/5 pt-20 md:pt-32 w-full overflow-hidden">
       <div className="container-custom w-full">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start w-full">
           {/* Left Content */}
