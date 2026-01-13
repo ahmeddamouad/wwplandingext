@@ -74,8 +74,8 @@ const Header = () => {
           />
         </a>
 
-        {/* Logo 2 - appears on the left when CTA shows */}
-        <a href="#" className={`absolute left-0 flex items-center transition-opacity duration-300 ${
+        {/* Logo 2 - appears on the left when CTA shows (desktop uses logo, mobile uses logo2) */}
+        <a href="#" className={`absolute left-4 hidden lg:flex items-center transition-opacity duration-300 ${
           showDesktopCTA || showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           <img 
@@ -84,8 +84,18 @@ const Header = () => {
             className="h-10 md:h-12"
           />
         </a>
+        
+        <a href="#" className={`absolute left-4 lg:hidden flex items-center transition-opacity duration-300 ${
+          showDesktopCTA || showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+          <img 
+            src={logo2} 
+            alt="World Wide Progress" 
+            className="h-10 md:h-12"
+          />
+        </a>
 
-        <div className={`hidden lg:flex items-center absolute right-0 transition-opacity duration-300 ${
+        <div className={`hidden lg:flex items-center absolute right-4 transition-opacity duration-300 ${
           showDesktopCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           <Button variant="cta" size="default" onClick={handleContactClick}>
@@ -94,7 +104,7 @@ const Header = () => {
         </div>
 
         {/* Mobile CTA Button - Only show after scrolling past form */}
-        <div className={`lg:hidden absolute right-0 transition-opacity duration-300 ${
+        <div className={`lg:hidden absolute right-4 transition-opacity duration-300 ${
           showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           <Button variant="cta" size="sm" onClick={handleContactClick}>
