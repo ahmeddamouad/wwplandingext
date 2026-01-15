@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -7,6 +7,17 @@ import { useToast } from '@/hooks/use-toast';
 import { Clock, Users, Shield } from 'lucide-react';
 import heroImage from '@/assets/hero-recruitment.jpg';
 import { trackLead } from '@/lib/metaPixel';
+
+// Import company logos
+import logo1 from '@/assets/image.png';
+import logo2 from '@/assets/image copy.png';
+import logo3 from '@/assets/image copy 2.png';
+import logo4 from '@/assets/image copy 3.png';
+import logo5 from '@/assets/image copy 4.png';
+import logo6 from '@/assets/image copy 5.png';
+import logo7 from '@/assets/image copy 6.png';
+import logo8 from '@/assets/image copy 7.png';
+import logo9 from '@/assets/image copy 8.png';
 
 const Hero = () => {
   const { toast } = useToast();
@@ -102,9 +113,9 @@ const Hero = () => {
   ];
 
   return (
-    <section id="contact-form" className="relative min-h-screen flex items-center bg-gradient-to-br from-secondary via-background to-primary/5 pt-20 md:pt-32 w-full overflow-hidden">
+    <section id="contact-form" className="relative lg:min-h-screen flex items-start lg:items-center bg-gradient-to-br from-secondary via-background to-primary/5 pt-20 md:pt-32 pb-12 md:pb-16 w-full overflow-hidden">
       <div className="container-custom w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start w-full">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 xl:gap-16 items-start w-full">
           {/* Left Content */}
           <div className="space-y-6 sm:space-y-8 animate-slide-up w-full max-w-full order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-3 py-2 bg-primary/10 rounded-full text-primary font-medium text-xs sm:text-sm">
@@ -237,12 +248,12 @@ const Hero = () => {
                       />
                     </div>
 
-                    <Button
+                    <ShimmerButton
                       type="submit"
-                      variant="hero"
-                      size="lg"
-                      className="w-full h-14 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       disabled={isSubmitting}
+                      background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+                      shimmerColor="#ffffff"
+                      className="w-full h-14 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl"
                     >
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
@@ -255,7 +266,24 @@ const Hero = () => {
                       ) : (
                         'Recevoir des profils disponibles'
                       )}
-                    </Button>
+                    </ShimmerButton>
+
+                    {/* Trust Badges */}
+                    <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 pb-3">
+                      <p className="text-xs text-muted-foreground text-center mb-3 sm:mb-4">Ils nous font confiance</p>
+                      <div className="relative overflow-hidden max-w-[180px] sm:max-w-none mx-auto">
+                        <div className="flex gap-6 sm:gap-8 animate-scroll-logos hover:[animation-play-state:paused]">
+                          {[logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9].map((logo, index) => (
+                            <img 
+                              key={index}
+                              src={logo} 
+                              alt="Company logo" 
+                              className="h-6 sm:h-8 w-16 sm:w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all flex-shrink-0"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>

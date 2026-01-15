@@ -1,5 +1,5 @@
 import { TrendingDown, Clock, Shield, Wallet, CheckCircle, AlertTriangle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { ArrowRight } from 'lucide-react';
 
 const PricingLogic = () => {
@@ -107,10 +107,15 @@ const PricingLogic = () => {
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="w-full" onClick={scrollToForm}>
+            <ShimmerButton 
+              onClick={scrollToForm}
+              background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+              shimmerColor="#ffffff"
+              className="w-full text-base font-semibold flex items-center justify-center gap-2"
+            >
               Recevoir des profils qualifiés
               <ArrowRight className="w-5 h-5" />
-            </Button>
+            </ShimmerButton>
           </div>
         </div>
       </div>

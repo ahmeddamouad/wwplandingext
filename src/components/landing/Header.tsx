@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
 import logo2 from '@/assets/Logo2.png';
@@ -98,18 +98,28 @@ const Header = () => {
         <div className={`hidden lg:flex items-center absolute right-4 transition-opacity duration-300 ${
           showDesktopCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
-          <Button variant="cta" size="default" onClick={handleContactClick}>
+          <ShimmerButton 
+            onClick={handleContactClick}
+            background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+            shimmerColor="#ffffff"
+            className="text-base font-semibold"
+          >
             Recevoir des profils qualifiés
-          </Button>
+          </ShimmerButton>
         </div>
 
         {/* Mobile CTA Button - Only show after scrolling past form */}
         <div className={`lg:hidden absolute right-4 transition-opacity duration-300 ${
           showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
-          <Button variant="cta" size="sm" onClick={handleContactClick}>
+          <ShimmerButton 
+            onClick={handleContactClick}
+            background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+            shimmerColor="#ffffff"
+            className="text-sm font-semibold px-4 py-2"
+          >
             Recevoir des profils qualifiés
-          </Button>
+          </ShimmerButton>
         </div>
       </div>
     </header>

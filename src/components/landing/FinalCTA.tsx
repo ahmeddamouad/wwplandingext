@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { ArrowRight, Mail, MapPin, Linkedin, CheckCircle } from 'lucide-react';
 
 const FinalCTA = () => {
@@ -20,17 +20,17 @@ const FinalCTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 px-4">
-            <Button 
-              variant="hero" 
-              size="xl" 
+            <ShimmerButton 
               onClick={scrollToForm}
-              className="text-sm sm:text-base w-full sm:w-auto"
+              background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+              shimmerColor="#ffffff"
+              className="text-sm sm:text-base w-full sm:w-auto font-semibold flex items-center justify-center"
             >
               <span className="whitespace-normal sm:whitespace-nowrap leading-tight">
                 Recevoir des profils disponibles immédiatement
               </span>
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 ml-2" />
-            </Button>
+            </ShimmerButton>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-12">
