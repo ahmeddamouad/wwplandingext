@@ -78,3 +78,26 @@ The built files will be in the `dist/` directory, ready to be deployed to any st
 3. Run `npm run lint` to check for issues
 4. Commit and push your changes
 5. Create a pull request
+
+## n8n Workflow (Form → Sheet → Emails)
+
+This project includes an n8n workflow that the front-end form posts to. The workflow accepts the form POST at the webhook path `/webhook/wwpformdetails`, extracts the body, appends the data to a Google Sheet, notifies admins by email, sends a confirmation email to the lead, and updates the sheet status.
+
+Files
+- `n8n/workflows/wwpl.sanitized.json` — sanitized exported workflow (credentials removed). Import this in the n8n Editor (Import → upload JSON) or with the CLI:
+
+```bash
+n8n import:workflow --input=n8n/workflows/wwpl.sanitized.json
+```
+
+Important notes
+- The sanitized JSON replaces sensitive IDs/URLs with placeholders (`<GOOGLE_SHEET_ID>`, `<GOOGLE_SHEET_URL>`, `<ADMIN_EMAILS_COMMA_SEPARATED>`). Do NOT commit real credentials.
+- After importing, create or configure credentials in your n8n instance (Google Sheets OAuth, Gmail OAuth) and update the workflow to use them.
+- If your hosted n8n instance auto-syncs with this repo, pushing changes to the workflow file can update the running workflow — use branches/PRs and test in staging before merging to `main`.
+
+Screenshot
+
+Below is the n8n workflow screenshot for reference (stored in the repo assets). It shows the webhook -> set (edit fields) -> append sheet -> admin email -> auto-reply -> update sheet flow.
+
+![n8n workflow screenshot](image.png)
+

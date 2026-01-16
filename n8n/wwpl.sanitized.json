@@ -1,0 +1,225 @@
+{
+  "name": "My workflow (sanitized)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wwpformdetails",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        -128
+      ],
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "<GOOGLE_SHEET_ID>",
+          "mode": "list",
+          "cachedResultName": "wwpformdetails",
+          "cachedResultUrl": "<GOOGLE_SHEET_URL>"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "<GOOGLE_SHEET_URL>#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $json.body.timestamp }}",
+            "name": "={{ $json.body.name }}",
+            "email": "={{ $json.body.email }}",
+            "phone": "={{ $json.body.phone }}",
+            "company": "={{ $json.body.company }}",
+            "message": "={{ $json.body.message }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "timestamp", "displayName": "timestamp", "type": "string" },
+            { "id": "name", "displayName": "name", "type": "string" },
+            { "id": "email", "displayName": "email", "type": "string" },
+            { "id": "phone", "displayName": "phone", "type": "string" },
+            { "id": "company", "displayName": "company", "type": "string" },
+            { "id": "message", "displayName": "message", "type": "string" },
+            { "id": "status", "displayName": "status", "type": "string" }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        528,
+        -128
+      ],
+      "name": "Append row in sheet"
+    },
+    {
+      "parameters": {
+        "sendTo": "<ADMIN_EMAILS_COMMA_SEPARATED>",
+        "subject": "=Nouveau lead: {{ $json.name }} ({{ $('Edit Fields').first().json.body.company }})",
+        "message": "=<h3>🆕 Nouveau lead recrutement !</h3>\n\n<p><strong>👤</strong> {{ $json.name }}</p>\n<p><strong>📧</strong> {{ $json.email }}</p>\n<p><strong>📱</strong> {{ $json.phone }}</p>\n<p><strong>🏢</strong> {{ $('Edit Fields').first().json.body.company }}</p>\n\n<p><strong>💬</strong> \"{{ $('Edit Fields').first().json.body.message }}\"</p>\n\n<p><strong>🔗 <a href=\"<GOOGLE_SHEET_URL>#gid=0\">Accéder à la fiche</a></strong></p>\n\n<hr>\n<small>Reçu le {{ $json.timestamp }}</small>\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        -128
+      ],
+      "name": "Send a message"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "body",
+              "name": "body",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        304,
+        -128
+      ],
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "sheet appending ",
+        "height": 384,
+        "width": 1440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        -256
+      ],
+      "typeVersion": 1,
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Append row in sheet').first().json.email }}",
+        "subject": "Votre demande de recrutement - Message bien reçu",
+        "emailType": "text",
+        "message": "=Bonjour {{ $('Append row in sheet').first().json.name }} ,\n\nMerci pour votre demande de recrutement, nous l’avons bien reçue !\n\nNous reviendrons vers vous dans les 24 prochaines heures.\n\nCordialement,\nWorld Wide Progress – Cabinet de Recrutement, Maroc\n🌐 www.worldwideprogress.com",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        976,
+        -128
+      ],
+      "name": "Send a message1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "<GOOGLE_SHEET_ID>",
+          "mode": "list",
+          "cachedResultName": "wwpformdetails",
+          "cachedResultUrl": "<GOOGLE_SHEET_URL>"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "<GOOGLE_SHEET_URL>#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $('Append row in sheet').first().json.timestamp }}",
+            "status": "Auto email sent"
+          },
+          "matchingColumns": [
+            "timestamp"
+          ],
+          "schema": [
+            { "id": "timestamp", "displayName": "timestamp", "type": "string" },
+            { "id": "status", "displayName": "status", "type": "string" }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1200,
+        -128
+      ],
+      "name": "Update row in sheet"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          { "node": "Edit Fields", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          { "node": "Send a message", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          { "node": "Send a message1", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          { "node": "Append row in sheet", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        [
+          { "node": "Update row in sheet", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  }
+}
