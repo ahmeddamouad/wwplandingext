@@ -5,7 +5,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Clock, Users, Shield } from 'lucide-react';
-import heroImage from '@/assets/hero-recruitment.jpg';
 import { trackLead } from '@/lib/metaPixel';
 
 // Import company logos
