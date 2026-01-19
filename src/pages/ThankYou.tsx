@@ -2,7 +2,7 @@ import { MessageCircle } from 'lucide-react';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 
 const ThankYou = () => {
-  const whatsappNumber = "+21200000000"; // Replace with actual WhatsApp number
+  const whatsappNumber = "+212700000660"; // Replace with actual WhatsApp number
   const whatsappMessage = encodeURIComponent("Bonjour, je viens de soumettre une demande via votre site.");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
