@@ -1,5 +1,7 @@
+import ZigzagSection from './ZigzagSection';
+import SectionIllustration from './SectionIllustration';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
-import { ArrowRight, Mail, MapPin, Linkedin, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Rocket, Users } from 'lucide-react';
 
 const FinalCTA = () => {
   const scrollToForm = () => {
@@ -8,68 +10,51 @@ const FinalCTA = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-secondary to-background w-full">
-      <div className="container-custom">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="heading-lg mb-6">
-            Besoin de Recruter Rapidement au Maroc?
-          </h2>
-          <p className="body-lg mb-10 max-w-2xl mx-auto">
-            Construisons ensemble une stratégie de recrutement efficace, adaptée au
-            marché marocain
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 px-4">
-            <ShimmerButton 
-              onClick={scrollToForm}
-              background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
-              shimmerColor="#ffffff"
-              className="text-sm sm:text-base w-full sm:w-auto font-semibold flex items-center justify-center"
-            >
-              <span className="whitespace-normal sm:whitespace-nowrap leading-tight">
-                Recevoir des profils disponibles immédiatement
-              </span>
-              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 ml-2" />
-            </ShimmerButton>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-12">
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              Sans engagement
-            </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              Réponse rapide
-            </span>
-          </div>
-
-          {/* Contact Info */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8 border-t border-border">
-            <a
-              href="mailto:contact@wwpagency.com"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-              contact@wwpagency.com
-            </a>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="w-5 h-5" />
-              Casablanca | Rabat, Maroc
+    <ZigzagSection
+      id="contact"
+      title="Votre nouvel employé est la clé cachée d'une croissance rapide"
+      reverse={false}
+      bgColor="secondary"
+      illustration={
+        <SectionIllustration variant="primary">
+          <div className="text-center space-y-6">
+            <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center">
+              <Rocket className="w-10 h-10 text-primary" />
             </div>
-            <a
-              href="https://www.linkedin.com/company/world-wide-progress"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-              Connectez-vous avec nous
-            </a>
+            <div className="space-y-2">
+              <div className="flex items-center justify-center gap-2">
+                <Users className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground">Profils disponibles</span>
+              </div>
+              <p className="text-sm text-muted-foreground">Immédiatement</p>
+            </div>
+          </div>
+        </SectionIllustration>
+      }
+    >
+      <div className="space-y-6">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <CheckCircle className="w-4 h-4 text-primary" />
+            <span>Sans engagement</span>
+          </div>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <CheckCircle className="w-4 h-4 text-primary" />
+            <span>Réponse rapide</span>
           </div>
         </div>
+
+        <ShimmerButton
+          onClick={scrollToForm}
+          background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+          shimmerColor="#ffffff"
+          className="w-full sm:w-auto text-base font-semibold flex items-center justify-center gap-2"
+        >
+          Recevoir des profils disponibles immédiatement
+          <ArrowRight className="w-5 h-5" />
+        </ShimmerButton>
       </div>
-    </section>
+    </ZigzagSection>
   );
 };
 
