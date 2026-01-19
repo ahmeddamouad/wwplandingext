@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -20,8 +21,8 @@ import logo9 from '@/assets/image copy 8.png';
 
 const Hero = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -72,14 +73,8 @@ const Hero = () => {
       // Track lead conversion with Meta Pixel
       trackLead();
 
-      setIsSubmitted(true);
-      setFormData({
-        fullName: '',
-        email: '',
-        company: '',
-        phone: '',
-        message: '',
-      });
+      // Redirect to thank you page
+      navigate('/merci');
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
@@ -90,10 +85,6 @@ const Hero = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleNewMessage = () => {
-    setIsSubmitted(false);
   };
 
   const benefits = [
@@ -162,161 +153,129 @@ const Hero = () => {
 
           {/* Right Form */}
           <div className="relative animate-fade-in delay-200 order-1 lg:order-2">
-            {!isSubmitted ? (
-              <div className="relative bg-gradient-to-br from-white via-white to-primary/5 rounded-3xl shadow-2xl p-8 border border-primary/20 backdrop-blur-sm lg:sticky lg:top-32 overflow-hidden">
-                {/* Futuristic decorative elements */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
-                
-                <div className="relative z-10">
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="space-y-2">
-                      <Label htmlFor="fullName" className="text-foreground font-semibold text-sm">
-                        Nom complet<span className="text-primary">*</span>
-                      </Label>
-                      <Input
-                        id="fullName"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        required
-                        placeholder="Votre nom complet"
-                        className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground font-semibold text-sm">
-                        Adresse e-mail<span className="text-primary">*</span>
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="votre@email.com"
-                        className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="company" className="text-foreground font-semibold text-sm">
-                          Entreprise
-                        </Label>
-                        <Input
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          placeholder="Votre entreprise"
-                          className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-foreground font-semibold text-sm">
-                          Téléphone<span className="text-primary">*</span>
-                        </Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          required
-                          placeholder="+212 600 000 000"
-                          className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-foreground font-semibold text-sm">
-                        Décrivez votre besoin<span className="text-primary">*</span>
-                      </Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        placeholder="Ex: Recherche d'un responsable commercial..."
-                        className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl min-h-[110px] resize-none"
-                      />
-                    </div>
-
-                    <ShimmerButton
-                      type="submit"
-                      disabled={isSubmitting}
-                      background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
-                      shimmerColor="#ffffff"
-                      className="w-full h-14 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl"
-                    >
-                      {isSubmitting ? (
-                        <span className="flex items-center gap-2">
-                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          Envoi en cours...
-                        </span>
-                      ) : (
-                        'Recevoir des profils disponibles'
-                      )}
-                    </ShimmerButton>
-
-                    {/* Trust Badges */}
-                    <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 pb-3">
-                      <p className="text-xs text-muted-foreground text-center mb-3 sm:mb-4">Ils nous font confiance</p>
-                      <div className="relative overflow-hidden max-w-[180px] sm:max-w-none mx-auto">
-                        <div className="flex gap-6 sm:gap-8 animate-scroll-logos hover:[animation-play-state:paused]">
-                          {[logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9].map((logo, index) => (
-                            <img 
-                              key={index}
-                              src={logo} 
-                              alt="Company logo" 
-                              className="h-6 sm:h-8 w-16 sm:w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all flex-shrink-0"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            ) : (
-              <div className="relative bg-gradient-to-br from-white via-primary/5 to-white rounded-3xl shadow-2xl p-10 text-center border border-primary/20 backdrop-blur-sm overflow-hidden">
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
-                
-                <div className="relative z-10">
-                  <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-lg">
-                    <svg
-                      className="w-10 h-10 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.5}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+            <div className="relative bg-gradient-to-br from-white via-white to-primary/5 rounded-3xl shadow-2xl p-8 border border-primary/20 backdrop-blur-sm lg:sticky lg:top-32 overflow-hidden">
+              {/* Futuristic decorative elements */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
+              
+              <div className="relative z-10">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName" className="text-foreground font-semibold text-sm">
+                      Nom complet<span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="fullName"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      required
+                      placeholder="Votre nom complet"
+                      className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
-                    Message envoyé avec succès !
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Notre équipe vous répondra rapidement avec des profils adaptés.
-                  </p>
-                </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-foreground font-semibold text-sm">
+                      Adresse e-mail<span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="votre@email.com"
+                      className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="company" className="text-foreground font-semibold text-sm">
+                        Entreprise
+                      </Label>
+                      <Input
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        placeholder="Votre entreprise"
+                        className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="text-foreground font-semibold text-sm">
+                        Téléphone<span className="text-primary">*</span>
+                      </Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        placeholder="+212 600 000 000"
+                        className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl h-12"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-foreground font-semibold text-sm">
+                      Décrivez votre besoin<span className="text-primary">*</span>
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      placeholder="Ex: Recherche d'un responsable commercial..."
+                      className="bg-white/50 border-primary/20 focus:border-primary transition-all duration-300 rounded-xl min-h-[110px] resize-none"
+                    />
+                  </div>
+
+                  <ShimmerButton
+                    type="submit"
+                    disabled={isSubmitting}
+                    background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
+                    shimmerColor="#ffffff"
+                    className="w-full h-14 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Envoi en cours...
+                      </span>
+                    ) : (
+                      'Recevoir des profils disponibles'
+                    )}
+                  </ShimmerButton>
+
+                  {/* Trust Badges */}
+                  <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 pb-3">
+                    <p className="text-xs text-muted-foreground text-center mb-3 sm:mb-4">Ils nous font confiance</p>
+                    <div className="relative overflow-hidden max-w-[180px] sm:max-w-none mx-auto">
+                      <div className="flex gap-6 sm:gap-8 animate-scroll-logos hover:[animation-play-state:paused]">
+                        {[logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9].map((logo, index) => (
+                          <img 
+                            key={index}
+                            src={logo} 
+                            alt="Company logo" 
+                            className="h-6 sm:h-8 w-16 sm:w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all flex-shrink-0"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
