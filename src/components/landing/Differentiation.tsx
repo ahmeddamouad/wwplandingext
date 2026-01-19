@@ -1,68 +1,74 @@
-import { X, Check } from 'lucide-react';
+import ZigzagSection from './ZigzagSection';
+import SectionIllustration from './SectionIllustration';
+import { Check, X, Users, Target } from 'lucide-react';
 
 const Differentiation = () => {
-  const dontSell = [
-    'Des packs de CV génériques',
-    'Des profils recyclés de bases de données',
-    'Des solutions standardisées',
-  ];
-
-  const deliver = [
-    'Des candidats en veille active ou recherche ciblée',
-    'Des profils évalués humainement et professionnellement',
-    'Des solutions adaptées à votre secteur et culture d\'entreprise',
-  ];
-
   return (
-    <section className="section-padding bg-secondary w-full">
-      <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="heading-lg mb-6">Notre Approche de Recrutement</h2>
-          <p className="body-lg">
-            Ce qui fait la différence entre un recrutement réussi et un échec coûteux
-          </p>
+    <ZigzagSection
+      title="Comment nous vous trouvons le meilleur employé"
+      reverse={false}
+      bgColor="secondary"
+      illustration={
+        <SectionIllustration variant="primary">
+          <div className="space-y-6">
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
+                <Users className="w-8 h-8 text-primary" />
+              </div>
+              <div className="text-3xl font-bold text-primary">+</div>
+              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
+                <Target className="w-8 h-8 text-primary" />
+              </div>
+            </div>
+            <p className="text-center text-sm text-muted-foreground">
+              Évaluation humaine + Expertise sectorielle
+            </p>
+          </div>
+        </SectionIllustration>
+      }
+    >
+      <div className="space-y-6">
+        {/* What we deliver */}
+        <div className="bg-primary/5 rounded-xl p-5 border border-primary/20">
+          <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
+            <Check className="w-5 h-5 text-primary" />
+            Nous livrons rapidement :
+          </h3>
+          <ul className="space-y-2 ml-7">
+            <li className="text-sm text-muted-foreground flex items-start gap-2">
+              <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              Des candidats en veille ou en recherche active (Ils sont prêts à travailler pour vous)
+            </li>
+            <li className="text-sm text-muted-foreground flex items-start gap-2">
+              <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              Évalués humainement et professionnellement
+            </li>
+            <li className="text-sm text-muted-foreground flex items-start gap-2">
+              <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              Adaptés à votre secteur d'activité
+            </li>
+          </ul>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* What we DON'T sell */}
-          <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
-            <h3 className="heading-md mb-6 flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center">
-                <X className="w-5 h-5 text-destructive" />
-              </span>
-              Nous ne vendons PAS
-            </h3>
-            <ul className="space-y-4">
-              {dontSell.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* What we DELIVER */}
-          <div className="bg-card rounded-2xl p-8 border-2 border-primary shadow-card relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 rounded-bl-full" />
-            <h3 className="heading-md mb-6 flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <Check className="w-5 h-5 text-primary" />
-              </span>
-              Nous livrons
-            </h3>
-            <ul className="space-y-4">
-              {deliver.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground font-medium">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* What we don't sell */}
+        <div className="bg-destructive/5 rounded-xl p-5 border border-destructive/20">
+          <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
+            <X className="w-5 h-5 text-destructive" />
+            Nous ne proposons jamais :
+          </h3>
+          <ul className="space-y-2 ml-7">
+            <li className="text-sm text-muted-foreground flex items-start gap-2">
+              <X className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+              Des packs de CV non filtrés
+            </li>
+            <li className="text-sm text-muted-foreground flex items-start gap-2">
+              <X className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+              Des profils génériques sans valeur ajoutée
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
+    </ZigzagSection>
   );
 };
 

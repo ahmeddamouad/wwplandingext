@@ -1,71 +1,72 @@
-import { Star } from 'lucide-react';
+import ZigzagSection from './ZigzagSection';
+import SectionIllustration from './SectionIllustration';
+import { Briefcase, ShoppingCart, Factory, Users } from 'lucide-react';
 
 const Testimonials = () => {
-  const testimonials = [
+  const results = [
     {
-      quote:
-        'Nous avions besoin d\'un Directeur Commercial expérimenté en moins de 3 semaines. World Wide Progress a identifié le candidat idéal en 10 jours. Il est toujours avec nous 18 mois plus tard.',
-      author: 'Directrice RH',
-      company: 'E-commerce (80 salariés)',
+      icon: Briefcase,
+      title: 'Postes clés',
+      description: 'DAF, DRH, CEO… nous avons recruté des profils exceptionnels pour les grandes et moyennes entreprises.',
     },
     {
-      quote:
-        'Le recrutement de notre équipe IT était un vrai casse-tête. WWP a compris nos besoins techniques et culturels et nous a présenté 3 profils parfaitement alignés en 2 semaines.',
-      author: 'CTO',
-      company: 'Fintech Casablanca',
+      icon: ShoppingCart,
+      title: 'Retail',
+      description: 'Nous avons accompagné notre client dans le recrutement de plus de 100 salariés.',
     },
     {
-      quote:
-        'La garantie de remplacement nous a convaincus. Professionnalisme, réactivité et suivi impeccable. Notre partenaire RH de confiance.',
-      author: 'DG',
-      company: 'Retail (100+ salariés)',
+      icon: Users,
+      title: 'E-commerce',
+      description: 'Nous avons recruté plus de 80 salariés avec un turnover très faible.',
+    },
+    {
+      icon: Factory,
+      title: 'Industrie & clients internationaux',
+      description: 'Expertise reconnue dans le secteur industriel et auprès de clients internationaux.',
     },
   ];
 
   return (
-    <section className="section-padding bg-background w-full">
-      <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="heading-lg mb-6">Ils Nous Font Confiance</h2>
-          <p className="body-lg">
-            Témoignages de nos clients satisfaits à travers le Maroc
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="group relative bg-gradient-to-br from-card via-card to-primary/5 rounded-2xl p-8 border border-primary/20 shadow-lg hover:shadow-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
-            >
-              {/* Futuristic corner accent */}
-              <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-2xl" />
-              
-              {/* Star rating */}
-              <div className="flex gap-1 mb-4 relative z-10">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                ))}
+    <ZigzagSection
+      title="Nos résultats : preuves de notre expertise"
+      reverse={false}
+      bgColor="secondary"
+      illustration={
+        <SectionIllustration variant="primary">
+          <div className="text-center space-y-4">
+            <div className="text-5xl font-bold text-primary">200+</div>
+            <p className="text-muted-foreground">Recrutements réussis</p>
+            <div className="flex justify-center gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">100+</div>
+                <p className="text-xs text-muted-foreground">Retail</p>
               </div>
-
-              <blockquote className="text-foreground mb-6 relative z-10 leading-relaxed">
-                "{testimonial.quote}"
-              </blockquote>
-              
-              <div className="flex items-center gap-3 pt-4 border-t border-primary/10 relative z-10">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold">
-                  {testimonial.author[0]}
-                </div>
-                <div>
-                  <p className="font-bold text-foreground">{testimonial.author}</p>
-                  <p className="text-xs text-muted-foreground">{testimonial.company}</p>
-                </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">80+</div>
+                <p className="text-xs text-muted-foreground">E-commerce</p>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </SectionIllustration>
+      }
+    >
+      <div className="space-y-4">
+        {results.map((item, index) => (
+          <div
+            key={index}
+            className="flex items-start gap-4 p-4 bg-card rounded-xl border border-primary/20 shadow-sm"
+          >
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <item.icon className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">{item.title}</p>
+              <p className="text-sm text-muted-foreground">{item.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </ZigzagSection>
   );
 };
 
