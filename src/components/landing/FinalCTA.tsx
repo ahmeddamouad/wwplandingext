@@ -1,7 +1,7 @@
 import ZigzagSection from './ZigzagSection';
-import SectionIllustration from './SectionIllustration';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
-import { ArrowRight, CheckCircle, Rocket, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
+import sectionImage from '@/assets/section-finalcta.jpg';
 
 const FinalCTA = () => {
   const scrollToForm = () => {
@@ -16,20 +16,14 @@ const FinalCTA = () => {
       reverse={false}
       bgColor="secondary"
       illustration={
-        <SectionIllustration variant="primary">
-          <div className="text-center space-y-6">
-            <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center">
-              <Rocket className="w-10 h-10 text-primary" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-center gap-2">
-                <Users className="w-5 h-5 text-primary" />
-                <span className="font-semibold text-foreground">Profils disponibles</span>
-              </div>
-              <p className="text-sm text-muted-foreground">Immédiatement</p>
-            </div>
-          </div>
-        </SectionIllustration>
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src={sectionImage} 
+            alt="Croissance et succès" 
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+        </div>
       }
     >
       <div className="space-y-6">

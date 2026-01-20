@@ -1,6 +1,6 @@
 import ZigzagSection from './ZigzagSection';
-import SectionIllustration from './SectionIllustration';
 import { AlertTriangle, TrendingDown, Clock } from 'lucide-react';
+import sectionImage from '@/assets/section-painpoints.jpg';
 
 const PainPoints = () => {
   return (
@@ -10,26 +10,14 @@ const PainPoints = () => {
       reverse={true}
       bgColor="background"
       illustration={
-        <SectionIllustration variant="primary">
-          <div className="space-y-4">
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <div className="bg-destructive/10 rounded-xl p-4 text-center min-w-[100px]">
-                <div className="text-3xl font-bold text-destructive">80</div>
-                <p className="text-sm text-muted-foreground">CV</p>
-              </div>
-              <div className="text-2xl font-bold text-primary">→</div>
-              <div className="bg-destructive/10 rounded-xl p-4 text-center min-w-[100px]">
-                <div className="text-3xl font-bold text-destructive">20</div>
-                <p className="text-sm text-muted-foreground">Entretiens</p>
-              </div>
-              <div className="text-2xl font-bold text-primary">→</div>
-              <div className="bg-destructive/10 rounded-xl p-4 text-center min-w-[100px]">
-                <div className="text-3xl font-bold text-destructive">0</div>
-                <p className="text-sm text-muted-foreground">Bon profil</p>
-              </div>
-            </div>
-          </div>
-        </SectionIllustration>
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src={sectionImage} 
+            alt="Frustration liée au mauvais recrutement" 
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+        </div>
       }
     >
       <div className="space-y-4">

@@ -1,6 +1,6 @@
 import ZigzagSection from './ZigzagSection';
-import SectionIllustration from './SectionIllustration';
 import { Briefcase, ShoppingCart, Factory, Users } from 'lucide-react';
+import sectionImage from '@/assets/section-testimonials.jpg';
 
 const Testimonials = () => {
   const results = [
@@ -32,22 +32,14 @@ const Testimonials = () => {
       reverse={false}
       bgColor="secondary"
       illustration={
-        <SectionIllustration variant="primary">
-          <div className="text-center space-y-4">
-            <div className="text-5xl font-bold text-primary">200+</div>
-            <p className="text-muted-foreground">Recrutements réussis</p>
-            <div className="flex justify-center gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">100+</div>
-                <p className="text-xs text-muted-foreground">Retail</p>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">80+</div>
-                <p className="text-xs text-muted-foreground">E-commerce</p>
-              </div>
-            </div>
-          </div>
-        </SectionIllustration>
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src={sectionImage} 
+            alt="Équipe professionnelle célébrant le succès" 
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+        </div>
       }
     >
       <div className="space-y-4">
