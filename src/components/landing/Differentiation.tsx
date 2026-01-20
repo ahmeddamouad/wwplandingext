@@ -1,6 +1,6 @@
 import ZigzagSection from './ZigzagSection';
-import SectionIllustration from './SectionIllustration';
-import { Check, X, Users, Target } from 'lucide-react';
+import { Check, X } from 'lucide-react';
+import sectionImage from '@/assets/section-differentiation.jpg';
 
 const Differentiation = () => {
   return (
@@ -9,22 +9,14 @@ const Differentiation = () => {
       reverse={false}
       bgColor="secondary"
       illustration={
-        <SectionIllustration variant="primary">
-          <div className="space-y-6">
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
-                <Users className="w-8 h-8 text-primary" />
-              </div>
-              <div className="text-3xl font-bold text-primary">+</div>
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
-                <Target className="w-8 h-8 text-primary" />
-              </div>
-            </div>
-            <p className="text-center text-sm text-muted-foreground">
-              Évaluation humaine + Expertise sectorielle
-            </p>
-          </div>
-        </SectionIllustration>
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src={sectionImage} 
+            alt="Équipe de recrutement professionnelle" 
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+        </div>
       }
     >
       <div className="space-y-6">
