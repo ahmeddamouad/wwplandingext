@@ -6,6 +6,7 @@ import Methodology from '@/components/landing/Methodology';
 import Testimonials from '@/components/landing/Testimonials';
 import PricingLogic from '@/components/landing/PricingLogic';
 import FinalCTA from '@/components/landing/FinalCTA';
+import ContactFormSection from '@/components/landing/ContactFormSection';
 import Footer from '@/components/landing/Footer';
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
         <Testimonials />
         <PricingLogic />
         <FinalCTA />
+        <ContactFormSection />
       </main>
       <Footer />
     </div>
