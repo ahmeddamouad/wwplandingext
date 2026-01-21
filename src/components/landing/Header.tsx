@@ -7,8 +7,7 @@ import logo2 from '@/assets/Logo2.png';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showMobileCTA, setShowMobileCTA] = useState(false);
-  const [showDesktopCTA, setShowDesktopCTA] = useState(false);
+  const [showCTA, setShowCTA] = useState(true); // Show CTA by default (at hero)
 
   const scrollToForm = () => {
     const formSection = document.getElementById('contact-form');
@@ -19,19 +18,21 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      // Get hero section height
-      const heroSection = document.getElementById('contact-form');
-      const heroHeight = heroSection ? heroSection.offsetHeight : 800;
+      // Check if user is in the form section only (not footer)
+      const formSection = document.getElementById('contact-form');
+      const footer = document.querySelector('footer');
       
-      // Show CTA button on mobile when scrolling past form (200px)
-      if (window.innerWidth < 1024) {
-        setShowMobileCTA(window.scrollY > 200);
-      } else {
-        setShowMobileCTA(false);
+      if (formSection && footer) {
+        const formRect = formSection.getBoundingClientRect();
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Hide CTA only when in form section but before footer
+        const inFormSection = formRect.top < windowHeight * 0.5 && formRect.bottom > windowHeight * 0.3;
+        const inFooter = footerRect.top < windowHeight;
+        
+        setShowCTA(!inFormSection || inFooter);
       }
-      
-      // Show CTA button on desktop when scrolling past hero section
-      setShowDesktopCTA(window.scrollY > heroHeight - 100);
     };
     
     handleScroll(); // Call once on mount
@@ -62,41 +63,30 @@ const Header = () => {
             : 'bg-background py-3'
         }`}
       >
-      <div className="container-custom relative flex items-center justify-center">
-        {/* Logo 1 - always centered */}
-        <a href="#" className={`flex items-center relative transition-opacity duration-300 ${
-          showDesktopCTA || showMobileCTA ? 'opacity-0' : 'opacity-100'
+      <div className="container-custom relative flex items-center justify-between">
+        {/* Logo - left aligned when CTA shows, centered when CTA is hidden */}
+        <div className={`flex items-center transition-all duration-300 ${
+          showCTA ? '' : 'flex-1 justify-center'
         }`}>
-          <img 
-            src={logo} 
-            alt="World Wide Progress" 
-            className="h-10 md:h-12"
-          />
-        </a>
+          <a href="#" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="World Wide Progress" 
+              className="h-10 md:h-12 w-auto"
+              style={{ 
+                imageRendering: 'auto',
+                transform: 'translate3d(0, 0, 0)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                willChange: 'auto'
+              }}
+            />
+          </a>
+        </div>
 
-        {/* Logo 2 - appears on the left when CTA shows (desktop uses logo, mobile uses logo2) */}
-        <a href="#" className={`absolute left-4 hidden lg:flex items-center transition-opacity duration-300 ${
-          showDesktopCTA || showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}>
-          <img 
-            src={logo} 
-            alt="World Wide Progress" 
-            className="h-10 md:h-12"
-          />
-        </a>
-        
-        <a href="#" className={`absolute left-4 lg:hidden flex items-center transition-opacity duration-300 ${
-          showDesktopCTA || showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}>
-          <img 
-            src={logo2} 
-            alt="World Wide Progress" 
-            className="h-10 md:h-12"
-          />
-        </a>
-
-        <div className={`hidden lg:flex items-center absolute right-4 transition-opacity duration-300 ${
-          showDesktopCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        {/* Desktop CTA Button */}
+        <div className={`hidden lg:flex items-center transition-opacity duration-300 ${
+          showCTA ? 'opacity-100' : 'opacity-0 pointer-events-none absolute right-0'
         }`}>
           <ShimmerButton 
             onClick={handleContactClick}
@@ -108,9 +98,9 @@ const Header = () => {
           </ShimmerButton>
         </div>
 
-        {/* Mobile CTA Button - Only show after scrolling past form */}
-        <div className={`lg:hidden absolute right-4 transition-opacity duration-300 ${
-          showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        {/* Mobile CTA Button */}
+        <div className={`lg:hidden transition-opacity duration-300 ${
+          showCTA ? 'opacity-100' : 'opacity-0 pointer-events-none absolute right-0'
         }`}>
           <ShimmerButton 
             onClick={handleContactClick}
