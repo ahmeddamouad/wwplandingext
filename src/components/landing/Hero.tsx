@@ -1,18 +1,6 @@
-import { Clock, Users, Shield } from 'lucide-react';
+import { Clock, Users, Shield, ArrowRight } from 'lucide-react';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
-import { ArrowRight } from 'lucide-react';
 import heroImage from '@/assets/section-hero.jpg';
-
-// Import company logos
-import logo1 from '@/assets/image.png';
-import logo2 from '@/assets/image copy.png';
-import logo3 from '@/assets/image copy 2.png';
-import logo4 from '@/assets/image copy 3.png';
-import logo5 from '@/assets/image copy 4.png';
-import logo6 from '@/assets/image copy 5.png';
-import logo7 from '@/assets/image copy 6.png';
-import logo8 from '@/assets/image copy 7.png';
-import logo9 from '@/assets/image copy 8.png';
 
 const Hero = () => {
   const scrollToForm = () => {
@@ -93,23 +81,6 @@ const Hero = () => {
               Recevoir des profils disponibles
               <ArrowRight className="w-5 h-5" />
             </ShimmerButton>
-
-            {/* Trust Badges */}
-            <div className="pt-4 sm:pt-6">
-              <p className="text-xs text-muted-foreground mb-3 sm:mb-4">Ils nous font confiance</p>
-              <div className="relative overflow-hidden">
-                <div className="flex gap-6 sm:gap-8 animate-scroll-logos hover:[animation-play-state:paused]">
-                  {[logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9].map((logo, index) => (
-                    <img 
-                      key={index}
-                      src={logo} 
-                      alt="Company logo" 
-                      className="h-6 sm:h-8 w-16 sm:w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all flex-shrink-0"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Image */}
