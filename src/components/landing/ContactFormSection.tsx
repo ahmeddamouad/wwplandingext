@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { trackLead } from '@/lib/metaPixel';
-import { Shield } from 'lucide-react';
+
 
 // Import company logos
 import logo1 from '@/assets/image.png';
@@ -181,21 +181,6 @@ const ContactFormSection = () => {
                 {isSubmitting ? 'Envoi en cours...' : 'Recevoir des profils disponibles'}
               </Button>
             </form>
-
-            {/* Guarantee Box */}
-            <div className="mt-6 bg-primary/10 border border-primary/20 rounded-xl p-4 sm:p-6">
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-foreground mb-1 text-sm sm:text-base">Garantie 100% Satisfait</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground break-words">
-                    Remplacement gratuit sous 3 mois si le candidat ne convient pas
-                  </p>
-                </div>
-              </div>
-            </div>
 
             {/* Trust Badges - Sliding Logos */}
             <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-secondary/10">
