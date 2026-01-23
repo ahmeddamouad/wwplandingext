@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
-import { Linkedin, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo.png';
-import logo2 from '@/assets/Logo2.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showCTA, setShowCTA] = useState(true); // Show CTA by default (at hero)
 
   const scrollToForm = () => {
@@ -44,16 +41,6 @@ const Header = () => {
     };
   }, []);
 
-  const navLinks = [
-    { href: '#methodologie', label: 'Méthodologie' },
-    { href: '#garantie', label: 'Garantie' },
-  ];
-
-  const handleContactClick = () => {
-    setIsMobileMenuOpen(false);
-    scrollToForm();
-  };
-
   return (
     <>
       <header
@@ -89,7 +76,7 @@ const Header = () => {
           showCTA ? 'opacity-100' : 'opacity-0 pointer-events-none absolute right-0'
         }`}>
           <ShimmerButton 
-            onClick={handleContactClick}
+            onClick={scrollToForm}
             background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
             shimmerColor="#ffffff"
             className="text-base font-semibold"
@@ -103,7 +90,7 @@ const Header = () => {
           showCTA ? 'opacity-100' : 'opacity-0 pointer-events-none absolute right-0'
         }`}>
           <ShimmerButton 
-            onClick={handleContactClick}
+            onClick={scrollToForm}
             background="linear-gradient(135deg, hsl(172, 70%, 39%) 0%, hsl(180, 60%, 45%) 100%)"
             shimmerColor="#ffffff"
             className="text-sm font-semibold px-4 py-2"

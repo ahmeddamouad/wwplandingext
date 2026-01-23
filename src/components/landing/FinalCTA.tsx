@@ -44,7 +44,7 @@ const FinalCTA = () => {
           shimmerColor="#ffffff"
           className="w-full sm:w-auto text-sm sm:text-base font-semibold flex items-center justify-center gap-2 px-4 py-3"
         >
-          <span className="text-center">Recevoir des profils disponibles immédiatement</span>
+          <span className="text-center">Recevoir des profils qualifiés</span>
           <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
         </ShimmerButton>
       </div>

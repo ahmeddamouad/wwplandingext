@@ -1,5 +1,6 @@
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
+import TrustedCompanies from '@/components/landing/TrustedCompanies';
 import PainPoints from '@/components/landing/PainPoints';
 import Differentiation from '@/components/landing/Differentiation';
 import Methodology from '@/components/landing/Methodology';
@@ -15,6 +16,7 @@ const Index = () => {
       <Header />
       <main className="overflow-x-hidden">
         <Hero />
+        <TrustedCompanies />
         <PainPoints />
         <Differentiation />
         <Methodology />

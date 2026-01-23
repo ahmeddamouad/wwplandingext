@@ -78,7 +78,7 @@ const Hero = () => {
               shimmerColor="#ffffff"
               className="w-full sm:w-auto text-base font-semibold flex items-center justify-center gap-2"
             >
-              Recevoir des profils disponibles
+              Recevoir des profils qualifiés
               <ArrowRight className="w-5 h-5" />
             </ShimmerButton>
           </div>
