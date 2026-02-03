@@ -7,7 +7,7 @@ interface ZigzagSectionProps {
   children: ReactNode;
   illustration: ReactNode;
   reverse?: boolean;
-  bgColor?: 'background' | 'secondary';
+  bgColor?: 'background' | 'secondary' | string;
 }
 
 const ZigzagSection = ({
@@ -19,10 +19,24 @@ const ZigzagSection = ({
   reverse = false,
   bgColor = 'background',
 }: ZigzagSectionProps) => {
+  const getBgStyle = () => {
+    if (bgColor === 'secondary') return 'bg-secondary';
+    if (bgColor === 'background') return 'bg-background';
+    return '';
+  };
+
+  const getInlineStyle = () => {
+    if (bgColor !== 'secondary' && bgColor !== 'background') {
+      return { background: bgColor };
+    }
+    return {};
+  };
+
   return (
     <section
       id={id}
-      className={`section-padding ${bgColor === 'secondary' ? 'bg-secondary' : 'bg-background'}`}
+      className={`section-padding ${getBgStyle()}`}
+      style={getInlineStyle()}
     >
       <div className="container-custom">
         <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>

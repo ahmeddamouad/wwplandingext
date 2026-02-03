@@ -35,7 +35,7 @@ const Methodology = () => {
       id="garantie"
       title="Comment nous vous aidons à maîtriser vos coûts"
       reverse={true}
-      bgColor="background"
+      bgColor="linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 50%, #F0F1F3 100%)"
       illustration={
         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
           <img 

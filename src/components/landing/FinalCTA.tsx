@@ -14,7 +14,7 @@ const FinalCTA = () => {
       id="contact"
       title="Prenez le contrôle de vos coûts de personnel dès aujourd'hui"
       reverse={false}
-      bgColor="secondary"
+      bgColor="linear-gradient(135deg, #FEF0E6 0%, #FDDAC1 50%, #FCC89B 100%)"
       illustration={
         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
           <img 

@@ -8,7 +8,7 @@ const PersonnelCostRisk = () => {
       title="La charge salariale mal maîtrisée : un risque à ne pas prendre"
       subtitle="Le vrai coût d'un personnel mal maîtrisé :"
       reverse={false}
-      bgColor="secondary"
+      bgColor="linear-gradient(135deg, #FEF0E6 0%, #FDDAC1 50%, #FCC89B 100%)"
       illustration={
         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
           <img 

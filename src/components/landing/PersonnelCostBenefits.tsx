@@ -8,7 +8,7 @@ const PersonnelCostBenefits = () => {
       title="Bénéfices d'une bonne gestion des coûts du personnel"
       subtitle="Optimiser votre masse salariale et chaque heure travaillée"
       reverse={false}
-      bgColor="secondary"
+      bgColor="linear-gradient(135deg, #E6F3FF 0%, #B3D9FF 50%, #80BFFF 100%)"
       illustration={
         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
           <img 
