@@ -24,7 +24,7 @@
 
     /* Muted - Light grays */
     --muted: 165 30% 96%;
-    --muted-foreground: 200 10% 45%;
+    --muted-foreground: 0 0% 15%;
 
     /* Accent - Warm terracotta for contrast */
     --accent: 20 70% 55%;
@@ -147,11 +147,11 @@
   }
 
   .body-lg {
-    @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
+    @apply text-lg md:text-xl text-foreground leading-relaxed;
   }
 
   .body-md {
-    @apply text-base md:text-lg text-muted-foreground leading-relaxed;
+    @apply text-base md:text-lg text-foreground leading-relaxed;
   }
 
   .icon-wrapper {
