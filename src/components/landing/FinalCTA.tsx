@@ -12,7 +12,7 @@ const FinalCTA = () => {
   return (
     <ZigzagSection
       id="contact"
-      title="Votre nouvel employé est la clé cachée d'une croissance rapide"
+      title="Prenez le contrôle de vos coûts de personnel dès aujourd'hui"
       reverse={false}
       bgColor="secondary"
       illustration={
@@ -28,13 +28,17 @@ const FinalCTA = () => {
     >
       <div className="space-y-6">
         <div className="space-y-3">
-          <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="flex items-center gap-2 text-muted-foreground justify-center lg:justify-start">
             <CheckCircle className="w-4 h-4 text-primary" />
             <span>Sans engagement</span>
           </div>
-          <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="flex items-center gap-2 text-muted-foreground justify-center lg:justify-start">
             <CheckCircle className="w-4 h-4 text-primary" />
-            <span>Réponse rapide</span>
+            <span>Réponse sous 24h</span>
+          </div>
+          <div className="flex items-center gap-2 text-muted-foreground justify-center lg:justify-start">
+            <CheckCircle className="w-4 h-4 text-primary" />
+            <span>Données confidentielles</span>
           </div>
         </div>
 
@@ -44,7 +48,7 @@ const FinalCTA = () => {
           shimmerColor="#ffffff"
           className="w-full sm:w-auto text-sm sm:text-base font-semibold flex items-center justify-center gap-2 px-4 py-3"
         >
-          <span className="text-center">Recevoir des profils qualifiés</span>
+          <span className="text-center">Demander un devis personnalisé</span>
           <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
         </ShimmerButton>
       </div>

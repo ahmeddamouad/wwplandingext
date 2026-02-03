@@ -1,32 +1,39 @@
 import ZigzagSection from './ZigzagSection';
-import { Shield, TrendingUp, Award, FileCheck } from 'lucide-react';
-import sectionImage from '@/assets/section-methodology.jpg';
+import { Shield, TrendingUp, Award, FileCheck, Users, Clock } from 'lucide-react';
+import sectionImage from '@/assets/Methodology.jpg';
 
 const Methodology = () => {
   const guarantees = [
     {
       icon: Shield,
-      title: 'Garantie de remplacement 3 mois',
+      title: 'Audit complet des coûts salariaux et heures utilisées',
     },
     {
       icon: TrendingUp,
-      title: 'Taux de réussite élevé',
+      title: 'Externalisation ou conseil stratégique sur la masse salariale',
     },
     {
       icon: Award,
-      title: 'Références sectorielles',
+      title: 'Calcul et édition des bulletins de paie',
     },
     {
       icon: FileCheck,
-      title: 'Processus transparent',
+      title: 'Déclarations sociales et fiscales',
+    },
+    {
+      icon: Clock,
+      title: 'Suivi des congés, absences et heures supplémentaires',
+    },
+    {
+      icon: Users,
+      title: 'Veille légale et conformité permanente',
     },
   ];
 
   return (
     <ZigzagSection
       id="garantie"
-      title="Un recrutement sans risque, c'est possible"
-      subtitle="Afin de garantir la sérénité de votre esprit, nous vous offrons :"
+      title="Comment nous vous aidons à maîtriser vos coûts"
       reverse={true}
       bgColor="background"
       illustration={
@@ -44,12 +51,12 @@ const Methodology = () => {
         {guarantees.map((item, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 p-4 bg-primary/5 rounded-xl border border-primary/20"
+            className="flex items-center gap-4 p-4 bg-primary/5 rounded-xl border border-primary/20 justify-center lg:justify-start"
           >
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
               <item.icon className="w-5 h-5 text-primary" />
             </div>
-            <p className="font-semibold text-foreground">{item.title}</p>
+            <p className="font-semibold text-foreground text-left">{item.title}</p>
           </div>
         ))}
       </div>

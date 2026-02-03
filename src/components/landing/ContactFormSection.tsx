@@ -76,7 +76,7 @@ const ContactFormSection = () => {
   };
 
   return (
-    <section id="contact-form" className="py-16 sm:py-24 bg-gradient-to-b from-white to-primary/5">
+    <section id="contact-form" className="pt-40 pb-32 sm:pt-40 sm:pb-24 bg-gradient-to-b from-white to-primary/5 min-h-screen">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-secondary/10">
@@ -166,7 +166,7 @@ const ContactFormSection = () => {
                 className="w-full text-base font-semibold"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Envoi en cours...' : 'Recevoir des profils qualifiés'}
+                {isSubmitting ? 'Envoi en cours...' : 'Demander un devis personnalisé'}
               </ShimmerButton>
             </form>
           </div>

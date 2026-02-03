@@ -7,6 +7,8 @@ const Header = () => {
   const [showCTA, setShowCTA] = useState(true); // Show CTA by default (at hero)
 
   const scrollToForm = () => {
+    // Hide CTA button immediately when clicked
+    setShowCTA(false);
     const formSection = document.getElementById('contact-form');
     formSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -15,20 +17,25 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      // Check if user is in the form section only (not footer)
+      // Check if user is in the form section
       const formSection = document.getElementById('contact-form');
+      const finalCTA = document.getElementById('contact');
       const footer = document.querySelector('footer');
       
-      if (formSection && footer) {
+      if (formSection && finalCTA && footer) {
         const formRect = formSection.getBoundingClientRect();
+        const finalCTARect = finalCTA.getBoundingClientRect();
         const footerRect = footer.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Hide CTA only when in form section but before footer
-        const inFormSection = formRect.top < windowHeight * 0.5 && formRect.bottom > windowHeight * 0.3;
+        // Hide only when in the actual form section (contact-form), not in FinalCTA (contact)
+        const inFinalCTA = finalCTARect.top < windowHeight * 0.5 && finalCTARect.bottom > windowHeight * 0.2;
+        const inFormSection = formRect.top < windowHeight * 0.5 && formRect.bottom > 0;
         const inFooter = footerRect.top < windowHeight;
         
-        setShowCTA(!inFormSection || inFooter);
+        // Show button when: in FinalCTA section, in footer, or above form section
+        // Hide button only when: in the contact form section
+        setShowCTA(inFinalCTA || inFooter || !inFormSection);
       }
     };
     
@@ -81,7 +88,7 @@ const Header = () => {
             shimmerColor="#ffffff"
             className="text-base font-semibold"
           >
-            Recevoir des profils qualifiés
+            Demander un devis personnalisé
           </ShimmerButton>
         </div>
 
@@ -95,7 +102,7 @@ const Header = () => {
             shimmerColor="#ffffff"
             className="text-sm font-semibold px-4 py-2"
           >
-            Recevoir des profils qualifiés
+            Demander un devis personnalisé
           </ShimmerButton>
         </div>
       </div>
