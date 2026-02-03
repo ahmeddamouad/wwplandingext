@@ -25,7 +25,6 @@ const PainPoints = () => {
           <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
           <div className="text-left">
             <p className="font-semibold text-foreground">Pénalités fiscales immédiates</p>
-            <p className="text-sm text-muted-foreground">5 % à 20 % + intérêts cumulés</p>
           </div>
         </div>
         <div className="flex items-start gap-3 p-4 bg-destructive/5 rounded-xl border border-destructive/20 justify-center lg:justify-start">
@@ -39,14 +38,12 @@ const PainPoints = () => {
           <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
           <div className="text-left">
             <p className="font-semibold text-foreground">Amendes par salarié</p>
-            <p className="text-sm text-muted-foreground">Pouvant atteindre 20 000 MAD</p>
           </div>
         </div>
         <div className="flex items-start gap-3 p-4 bg-destructive/5 rounded-xl border border-destructive/20 justify-center lg:justify-start">
           <Clock className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
           <div className="text-left">
             <p className="font-semibold text-foreground">Pénalités CNSS automatiques</p>
-            <p className="text-sm text-muted-foreground">3 % puis 1 % par mois</p>
           </div>
         </div>
         <div className="flex items-start gap-3 p-4 bg-destructive/5 rounded-xl border border-destructive/20 justify-center lg:justify-start">
